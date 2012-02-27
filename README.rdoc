@@ -1,0 +1,37 @@
+== Python Uverse stats collector
+A stats collector for uverse 
+Originally designed for myself to watch downstream bandwidth
+in order to prevent pixelation due to too many HD streams
+or starving bandwidth from Netflix or other streaming services
+
+== Stats supported
+Initial version only supports total upstream and downstream.
+This includes HPNA devices (phones, settop boxes, as well as 
+wireless and wired computers).
+
+== Testing / Devices
+Uverse equipment tested on:
+ 2wire i3812V
+ Hardware Version 000705-004
+ Software Version 6.3.7.37-enh.tm
+Stats collector testing:
+ Debian 6.0.4
+
+== Screenshots
+Included in the github depot are a few sample png's.
+
+== Dependencies (debian 6)
+librrd4               time-series data storage and display system (runtime library)
+python-pyrrd          object-oriented Python interface for RRD
+python-rrdtool        time-series data storage and display system (Python interface)
+rrdtool               time-series data storage and display system (programs)
+
+== Install
+cp ./bin/tools/empty.rrd [web_root]/net.rrd (you can also use mk_rrdtool.py provided)
+PYHTONPATH=[install_location]/bin/
+[install_location]/bin/inid_stats.py 
+Point your browser at the png files generated for stats viewing
+
+== Bugs
+I've got quite a few items that need to go into a config file.
+The code was originally written to write to /tmp so I need to parameterize all those spots.
