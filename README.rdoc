@@ -14,7 +14,7 @@ Uverse equipment tested on:
  2wire i3812V
  Hardware Version 000705-004
  Software Version 6.3.7.37-enh.tm
-Distributions for collector:
+Distributions tested for collection:
  Debian 6.0.4
 
 == Screenshots
