@@ -35,8 +35,8 @@ while True:
                 column_data =  td.find(text=True)
                 lines.append( column_data )
 
-    transmit = lines[143]
-    receive = lines[148]
+    transmit = lines[143] # (this will vary by device type)
+    receive = lines[148] # (this will vary by device type)
     shellcmd = "rrdtool update /var/www/net.rrd N:" + receive + ":" + transmit
 
     return_code = call(shellcmd, shell=True)
