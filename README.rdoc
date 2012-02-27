@@ -19,6 +19,7 @@ Distributions for collector:
 
 == Screenshots
 Included in the github depot are a few sample png's.
+<img samples/net.png </img>
 
 == Dependencies (debian 6)
  librrd4               time-series data storage and display system (runtime library)
