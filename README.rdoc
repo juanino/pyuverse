@@ -32,9 +32,11 @@ Included in the github depot are a few sample png's.
  [install_location]/bin/inid_stats.py 
  Point your browser at the png files generated for stats viewing
 
-== Running as a daemon
+== Simple Daemonizing
  PYHTONPATH=/root/appliance/inid/
- daemon /[install_location]/inid_stats.py --stdout /var/log/inid_stats.log --stderr /var/log/inid_stats.log --output /var/log/inid_stats.log
+ daemon /[install_location]/inid_stats.py \ 
+    --stdout /var/log/inid_stats.log --stderr /var/log/inid_stats.log \
+    --output /var/log/inid_stats.log
 
 == Bugs
 I've got quite a few items that need to go into a config file.
