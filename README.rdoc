@@ -21,16 +21,16 @@ Distributions for collector:
 Included in the github depot are a few sample png's.
 
 == Dependencies (debian 6)
-librrd4               time-series data storage and display system (runtime library)
-python-pyrrd          object-oriented Python interface for RRD
-python-rrdtool        time-series data storage and display system (Python interface)
-rrdtool               time-series data storage and display system (programs)
+ librrd4               time-series data storage and display system (runtime library)
+ python-pyrrd          object-oriented Python interface for RRD
+ python-rrdtool        time-series data storage and display system (Python interface)
+ rrdtool               time-series data storage and display system (programs)
 
 == Install
-cp ./bin/tools/empty.rrd [web_root]/net.rrd (you can also use mk_rrdtool.py provided)
-PYHTONPATH=[install_location]/bin/
-[install_location]/bin/inid_stats.py 
-Point your browser at the png files generated for stats viewing
+ cp ./bin/tools/empty.rrd [web_root]/net.rrd (you can also use mk_rrdtool.py provided)
+ PYHTONPATH=[install_location]/bin/
+ [install_location]/bin/inid_stats.py 
+ Point your browser at the png files generated for stats viewing
 
 == Bugs
 I've got quite a few items that need to go into a config file.
