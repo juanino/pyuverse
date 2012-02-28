@@ -26,13 +26,16 @@ Included in the github depot are a few sample png's.
  python-rrdtool        time-series data storage and display system (Python interface)
  rrdtool               time-series data storage and display system (programs)
 
+== Dependencies (redhat fedora 13)
+ rrdtool-python
+
 == Install
- cp ./bin/tools/empty.rrd [web_root]/net.rrd (you can also use mk_rrdtool.py provided)
+ cp ./bin/tools/empty.rrd [web_root]/net.rrd (you can also use mk_rrdtool.py provided to generate net.rrd)
  PYHTONPATH=[install_location]/bin/
  [install_location]/bin/inid_stats.py 
  Point your browser at the png files generated for stats viewing
 
-== Simple Daemonizing
+== Simple Daemonizing (debian)
  apt-get install daemon
  PYHTONPATH=/root/appliance/inid/
  daemon /[install_location]/inid_stats.py \ 
@@ -42,3 +45,4 @@ Included in the github depot are a few sample png's.
 == Bugs
 I've got quite a few items that need to go into a config file.
 The code was originally written to write to /tmp so I need to parameterize all those spots.
+Namely: rrdtool.graph() has a hadcoded path still.
