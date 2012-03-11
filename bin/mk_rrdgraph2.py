@@ -2,15 +2,23 @@
 import sys
 import rrdtool
 import datetime
+import ConfigParser
+
+Config = ConfigParser.ConfigParser()
+Config.read("/home/juanino/github/pyuverse/etc/pyuverse.conf")
+rrdFile = Config.get("general","rrdFile")
+print rrdFile
+
 
 def make_mbits_graph():
     now = datetime.datetime.now()
     humantime = now.strftime("%Y-%m-%d %H:%M")
     title = "--title=24 hour inid traffic " + humantime
-    ret = rrdtool.graph("/var/www/net.png", "--start", "-1d", "--vertical-label=Bits/s", 
+    print "rrd file is " + rrdFile
+    ret = rrdtool.graph("net.png", "--start", "-1d", "--vertical-label=Bits/s", 
      title,
-     "DEF:inoctets=/var/www/net.rrd:input:AVERAGE",
-     "DEF:outoctets=/var/www/net.rrd:output:AVERAGE",
+     "DEF:inoctets=" + rrdFile + ":input:AVERAGE",
+     "DEF:outoctets=" + rrdFile + ":output:AVERAGE",
      "CDEF:inbits=inoctets,8,*",
      "CDEF:outbits=outoctets,8,*",
      "AREA:inbits#00FF00:In traffic",
@@ -27,10 +35,10 @@ def make_mbits_graph_1hr():
     now = datetime.datetime.now()
     humantime = now.strftime("%Y-%m-%d %H:%M")
     title = "--title=1 hour inid traffic " + humantime
-    ret = rrdtool.graph("/var/www/net1hr.png", "--start", "-1h", "--vertical-label=Bits/s",
+    ret = rrdtool.graph("net1hr.png", "--start", "-1h", "--vertical-label=Bits/s",
      title,
-     "DEF:inoctets=/var/www/net.rrd:input:AVERAGE",
-     "DEF:outoctets=/var/www/net.rrd:output:AVERAGE",
+     "DEF:inoctets=" + rrdFile + ":input:AVERAGE",
+     "DEF:outoctets=" + rrdFile  + ":output:AVERAGE",
      "CDEF:inbits=inoctets,8,*",
      "CDEF:outbits=outoctets,8,*",
      "AREA:inbits#00FF00:In traffic",
@@ -47,9 +55,9 @@ def mk_mbits_graph_1hr_upload():
     now = datetime.datetime.now()
     humantime = now.strftime("%Y-%m-%d %H:%M")
     title = "--title=1 hour inid traffic " + humantime
-    ret = rrdtool.graph("/var/www/net1hr_upload.png", "--start", "-1h", "--vertical-label=Bits/s",
+    ret = rrdtool.graph("net1hr_upload.png", "--start", "-1h", "--vertical-label=Bits/s",
      title,
-     "DEF:outoctets=/var/www/net.rrd:output:AVERAGE",
+     "DEF:outoctets=" + rrdFile + ":output:AVERAGE",
      "CDEF:outbits=outoctets,8,*",
      "LINE1:outbits#0000FF:Out traffic\\r",
      "COMMENT:\\n",

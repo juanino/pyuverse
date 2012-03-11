@@ -11,15 +11,23 @@ import urllib
 import sys
 import time
 import rrdtool
+import ConfigParser
 from subprocess import call
 from mk_rrdgraph2 import make_mbits_graph 
 from mk_rrdgraph2 import make_mbits_graph_1hr
 from mk_rrdgraph2 import mk_mbits_graph_1hr_upload
 
+Config = ConfigParser.ConfigParser()
+Config.read("/home/juanino/github/pyuverse/etc/pyuverse.conf")
+UverseRouter = Config.get("general","UverseRouter")
+rrdFile = Config.get("general","rrdFile")
+print UverseRouter
+print rrdFile
+exit
 
 while True:
 
-    f = urllib.urlopen("http://192.168.1.254/xslt?PAGE=C_1_0")
+    f = urllib.urlopen(UverseRouter)
     s = f.read()
 
     html = s
@@ -37,7 +45,7 @@ while True:
 
     transmit = lines[143] # (this will vary by device type)
     receive = lines[148] # (this will vary by device type)
-    shellcmd = "rrdtool update /var/www/net.rrd N:" + receive + ":" + transmit
+    shellcmd = "rrdtool update " + rrdFile + " N:" + receive + ":" + transmit
 
     return_code = call(shellcmd, shell=True)
     if return_code:
