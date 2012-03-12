@@ -26,14 +26,18 @@ Included in the github depot are a few sample png's.
  python-rrdtool        time-series data storage and display system (Python interface)
  rrdtool               time-series data storage and display system (programs)
 
+== Dependencies (redhat fedora 13)
+ rrdtool-python
+
 == Install
+<<<<<<< HEAD
  cp ./bin/tools/empty.rrd [rrdFile location from pyuverse.conf]
  # (you can also use mk_rrdtool.py provided)
- PYHTONPATH=[install_location]/bin/
+ PYTHONPATH=[install_location]/bin/
  [install_location]/bin/inid_stats.py 
 Point your browser at the png files generated for stats viewing
 
-== Simple Daemonizing
+== Simple Daemonizing (debian)
  apt-get install daemon
  PYHTONPATH=/root/appliance/inid/
  daemon /[install_location]/inid_stats.py \ 
