@@ -30,7 +30,6 @@ Included in the github depot are a few sample png's.
  rrdtool-python
 
 == Install
-<<<<<<< HEAD
  cp ./bin/tools/empty.rrd [rrdFile location from pyuverse.conf]
  # (you can also use mk_rrdtool.py provided)
  PYTHONPATH=[install_location]/bin/
