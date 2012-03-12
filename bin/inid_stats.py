@@ -17,13 +17,15 @@ from mk_rrdgraph2 import make_mbits_graph
 from mk_rrdgraph2 import make_mbits_graph_1hr
 from mk_rrdgraph2 import mk_mbits_graph_1hr_upload
 
+# read the config file
 Config = ConfigParser.ConfigParser()
 Config.read("/home/juanino/github/pyuverse/etc/pyuverse.conf")
+
+# set variables
 UverseRouterUrl = Config.get("general","UverseRouterUrl")
 rrdFile = Config.get("general","rrdFile")
-#print UverseRouterUrl
-#print rrdFile
-exit
+totalTrafficTransmit = Config.getint("general","totalTrafficTransmit")
+totalTrafficReceive = Config.getint("general","totalTrafficReceive")
 
 while True:
 
@@ -43,8 +45,8 @@ while True:
                 column_data =  td.find(text=True)
                 lines.append( column_data )
 
-    transmit = lines[143] # (this will vary by device type)
-    receive = lines[148] # (this will vary by device type)
+    transmit = lines[totalTrafficTransmit] 
+    receive = lines[totalTrafficReceive]
     shellcmd = "rrdtool update " + rrdFile + " N:" + receive + ":" + transmit
 
     return_code = call(shellcmd, shell=True)

@@ -41,5 +41,4 @@ Point your browser at the png files generated for stats viewing
     --output /var/log/inid_stats.log
 
 == Bugs
-I've got quite a few items that need to go into a config file.
-The code was originally written to write to /tmp so I need to parameterize all those spots.
+Report bugs through github.
