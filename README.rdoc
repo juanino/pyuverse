@@ -27,10 +27,10 @@ Included in the github depot are a few sample png's.
  rrdtool               time-series data storage and display system (programs)
 
 == Install
- cp ./bin/tools/empty.rrd [web_root]/net.rrd (you can also use mk_rrdtool.py provided)
+ cp ./bin/tools/empty.rrd [rrdFile location from pyuverse.conf] # (you can also use mk_rrdtool.py provided)
  PYHTONPATH=[install_location]/bin/
  [install_location]/bin/inid_stats.py 
- Point your browser at the png files generated for stats viewing
+Point your browser at the png files generated for stats viewing
 
 == Simple Daemonizing
  apt-get install daemon
