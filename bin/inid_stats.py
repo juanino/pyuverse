@@ -19,15 +19,15 @@ from mk_rrdgraph2 import mk_mbits_graph_1hr_upload
 
 Config = ConfigParser.ConfigParser()
 Config.read("/home/juanino/github/pyuverse/etc/pyuverse.conf")
-UverseRouter = Config.get("general","UverseRouter")
+UverseRouterUrl = Config.get("general","UverseRouterUrl")
 rrdFile = Config.get("general","rrdFile")
-print UverseRouter
-print rrdFile
+#print UverseRouterUrl
+#print rrdFile
 exit
 
 while True:
 
-    f = urllib.urlopen(UverseRouter)
+    f = urllib.urlopen(UverseRouterUrl)
     s = f.read()
 
     html = s
@@ -53,8 +53,8 @@ while True:
         print return_code
     else:
         print "Good update. ----------->" + shellcmd
-    print "Sleeping...."
     make_mbits_graph()
     make_mbits_graph_1hr()
     mk_mbits_graph_1hr_upload()
+    print "Sleeping...."
     time.sleep(300)

@@ -7,15 +7,16 @@ import ConfigParser
 Config = ConfigParser.ConfigParser()
 Config.read("/home/juanino/github/pyuverse/etc/pyuverse.conf")
 rrdFile = Config.get("general","rrdFile")
-print rrdFile
+pngDir = Config.get("general","pngDir")
+#print rrdFile
 
 
 def make_mbits_graph():
     now = datetime.datetime.now()
     humantime = now.strftime("%Y-%m-%d %H:%M")
     title = "--title=24 hour inid traffic " + humantime
-    print "rrd file is " + rrdFile
-    ret = rrdtool.graph("net.png", "--start", "-1d", "--vertical-label=Bits/s", 
+    #print "rrd file is " + rrdFile
+    ret = rrdtool.graph(pngDir + "/net.png", "--start", "-1d", "--vertical-label=Bits/s", 
      title,
      "DEF:inoctets=" + rrdFile + ":input:AVERAGE",
      "DEF:outoctets=" + rrdFile + ":output:AVERAGE",
@@ -28,14 +29,14 @@ def make_mbits_graph():
      "GPRINT:inbits:MAX:Max In traffic\: %6.2lf %Sbps\\r",
      "GPRINT:outbits:AVERAGE:Avg Out traffic\: %6.2lf %Sbps",
      "GPRINT:outbits:MAX:Max Out traffic\: %6.2lf %Sbps\\r")
-    print "saving to /var/www/net.png"
+    print "saving to " + pngDir
     print ret
 
 def make_mbits_graph_1hr():
     now = datetime.datetime.now()
     humantime = now.strftime("%Y-%m-%d %H:%M")
     title = "--title=1 hour inid traffic " + humantime
-    ret = rrdtool.graph("net1hr.png", "--start", "-1h", "--vertical-label=Bits/s",
+    ret = rrdtool.graph(pngDir + "/net1hr.png", "--start", "-1h", "--vertical-label=Bits/s",
      title,
      "DEF:inoctets=" + rrdFile + ":input:AVERAGE",
      "DEF:outoctets=" + rrdFile  + ":output:AVERAGE",
@@ -48,14 +49,14 @@ def make_mbits_graph_1hr():
      "GPRINT:inbits:MAX:Max In traffic\: %6.2lf %Sbps\\r",
      "GPRINT:outbits:AVERAGE:Avg Out traffic\: %6.2lf %Sbps",
      "GPRINT:outbits:MAX:Max Out traffic\: %6.2lf %Sbps\\r")
-    print "saving to /var/www/net1hr.png"
+    print "saving to " + pngDir
     print ret
 
 def mk_mbits_graph_1hr_upload():
     now = datetime.datetime.now()
     humantime = now.strftime("%Y-%m-%d %H:%M")
     title = "--title=1 hour inid traffic " + humantime
-    ret = rrdtool.graph("net1hr_upload.png", "--start", "-1h", "--vertical-label=Bits/s",
+    ret = rrdtool.graph(pngDir + "/net1hr_upload.png", "--start", "-1h", "--vertical-label=Bits/s",
      title,
      "DEF:outoctets=" + rrdFile + ":output:AVERAGE",
      "CDEF:outbits=outoctets,8,*",
@@ -63,5 +64,5 @@ def mk_mbits_graph_1hr_upload():
      "COMMENT:\\n",
      "GPRINT:outbits:AVERAGE:Avg Out traffic\: %6.2lf %Sbps",
      "GPRINT:outbits:MAX:Max Out traffic\: %6.2lf %Sbps\\r")
-    print "saving to /var/www/net1hr_upload.png"
+    print "saving to " + pngDir
     print ret
