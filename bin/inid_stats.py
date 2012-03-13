@@ -37,13 +37,11 @@ while True:
 
     lines = []
     tables = soup.findAll('table')
-    for table in tables:
-        rows = table.findAll('tr')
-        for tr in rows:
-            cols = tr.findAll('td')
-            for td in cols:
-                column_data =  td.find(text=True)
-                lines.append( column_data )
+    rows = tables[3].findAll('tr')
+    transmitcolumns = rows[1].findAll('td')
+    receivecolumns = rows[2].findAll('td')
+    transmit = transmitcolumns
+    print receivecolumns
 
     transmit = lines[totalTrafficTransmit] 
     receive = lines[totalTrafficReceive]
