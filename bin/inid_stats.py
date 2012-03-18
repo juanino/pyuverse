@@ -24,8 +24,6 @@ Config.read("/home/juanino/github/pyuverse/etc/pyuverse.conf")
 # set variables
 UverseRouterUrl = Config.get("general","UverseRouterUrl")
 rrdFile = Config.get("general","rrdFile")
-totalTrafficTransmit = Config.getint("general","totalTrafficTransmit")
-totalTrafficReceive = Config.getint("general","totalTrafficReceive")
 
 while True:
 
@@ -38,13 +36,14 @@ while True:
     lines = []
     tables = soup.findAll('table')
     rows = tables[3].findAll('tr')
-    transmitcolumns = rows[1].findAll('td')
-    receivecolumns = rows[2].findAll('td')
-    transmit = transmitcolumns
-    print receivecolumns
-
-    transmit = lines[totalTrafficTransmit] 
-    receive = lines[totalTrafficReceive]
+    transmitcols = rows[1].findAll('td')
+    receivecols = rows[2].findAll('td')
+    transmit = transmitcols[1].find(text=True)
+    receive = receivecols[1].find(text=True)
+    
+    print transmit
+    print receive
+    
     shellcmd = "rrdtool update " + rrdFile + " N:" + receive + ":" + transmit
 
     return_code = call(shellcmd, shell=True)
