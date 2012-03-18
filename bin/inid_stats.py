@@ -19,7 +19,12 @@ from mk_rrdgraph2 import mk_mbits_graph_1hr_upload
 
 # read the config file
 Config = ConfigParser.ConfigParser()
-Config.read("/home/juanino/github/pyuverse/etc/pyuverse.conf")
+try:
+   open("/etc/pyuverse.conf")
+except IOError as e:
+   print 'You need to copy pyuverse.conf to /etc'
+   sys.exit()
+Config.read("/etc/pyuverse.conf")
 
 # set variables
 UverseRouterUrl = Config.get("general","UverseRouterUrl")
