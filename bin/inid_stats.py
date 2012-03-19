@@ -16,19 +16,28 @@ from subprocess import call
 from mk_rrdgraph2 import make_mbits_graph 
 from mk_rrdgraph2 import make_mbits_graph_1hr
 from mk_rrdgraph2 import mk_mbits_graph_1hr_upload
+from pyuverselib import rrdCreateNew
 
 # read the config file
+# default location is /etc/pyuverse
 Config = ConfigParser.ConfigParser()
 try:
    open("/etc/pyuverse.conf")
 except IOError as e:
-   print 'You need to copy pyuverse.conf to /etc'
+   print 'Cannot open file or you need to copy pyuverse.conf to /etc'
    sys.exit()
 Config.read("/etc/pyuverse.conf")
 
 # set variables
 UverseRouterUrl = Config.get("general","UverseRouterUrl")
 rrdFile = Config.get("general","rrdFile")
+try:
+    open(rrdFile)
+    print 'Opened rrdfile ' + rrdFile
+except IOError as e:
+    print 'rrd file ' + rrdFile + ' cannot be opened'
+    print 'creating new rrdfile ' + rrdFile
+    rrdCreateNew()
 
 while True:
 

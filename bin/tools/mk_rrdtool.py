@@ -1,4 +1,8 @@
 #!/usr/bin/python
+
+# no longer needed
+# this is now handled by pyuverselib
+
 import sys
 import rrdtool
 

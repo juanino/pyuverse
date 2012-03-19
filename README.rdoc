@@ -30,8 +30,8 @@ Included in the github depot are a few sample png's.
  rrdtool-python
 
 == Install
- cp ./bin/tools/empty.rrd [rrdFile location from pyuverse.conf]
- # (you can also use mk_rrdtool.py provided)
+Copy the config file into place after editing it.
+ # cp [install_location]/etc/pyuverse.conf /etc
  PYTHONPATH=[install_location]/bin/
  [install_location]/bin/inid_stats.py 
 Point your browser at the png files generated for stats viewing
