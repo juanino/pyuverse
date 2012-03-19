@@ -38,10 +38,7 @@ Point your browser at the png files generated for stats viewing
 
 == Simple Daemonizing (debian)
  apt-get install daemon
- PYHTONPATH=/root/appliance/inid/
- daemon /[install_location]/inid_stats.py \ 
-    --stdout /var/log/inid_stats.log --stderr /var/log/inid_stats.log \
-    --output /var/log/inid_stats.log
+Check out start_daemon.sh included in the bin dir.
 
 == Bugs
 Report bugs through github.
