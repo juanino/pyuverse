@@ -39,6 +39,12 @@ except IOError as e:
     print 'creating new rrdfile ' + rrdFile
     rrdCreateNew()
 
+trafficTotalTable = Config.getint("tableinfo","trafficTotalTable")
+trafficTotalTransmitRow = Config.getint("tableinfo","trafficTotalTransmitRow")
+trafficTotalReceiveRow = Config.getint("tableinfo","trafficTotalReceiveRow")
+trafficTotalTransmitColumn = Config.getint("tableinfo","trafficTotalTransmitColumn")
+trafficTotalReceiveColumn = Config.getint("tableinfo","trafficTotalReceiveColumn")
+
 while True:
 
     f = urllib.urlopen(UverseRouterUrl)
@@ -49,11 +55,11 @@ while True:
 
     lines = []
     tables = soup.findAll('table')
-    rows = tables[3].findAll('tr')
-    transmitcols = rows[1].findAll('td')
-    receivecols = rows[2].findAll('td')
-    transmit = transmitcols[1].find(text=True)
-    receive = receivecols[1].find(text=True)
+    rows = tables[trafficTotalTable].findAll('tr')
+    transmitcols = rows[trafficTotalTransmitRow].findAll('td')
+    receivecols = rows[trafficTotalReceiveRow].findAll('td')
+    transmit = transmitcols[trafficTotalTransmitColumn].find(text=True)
+    receive = receivecols[trafficTotalReceiveColumn].find(text=True)
     
     print transmit
     print receive
