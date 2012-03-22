@@ -16,6 +16,7 @@ Uverse equipment tested on:
  Software Version 6.3.7.37-enh.tm
 Distributions tested for collection:
  Debian 6.0.4
+See the install section for different devices
 
 == Screenshots
 Included in the github depot are a few sample png's.
@@ -30,6 +31,15 @@ Included in the github depot are a few sample png's.
  rrdtool-python
 
 == Install
+Check the values in pyuverse.conf
+If your device is not the same as mine, you can 
+set the HTML table number, row, and column in the table
+for the values you want.
+ trafficTotalTable = 3
+ trafficTotalTransmitRow = 1
+ trafficTotalReceiveRow = 2
+ trafficTotalTransmitColumn = 1
+ trafficTotalReceiveColumn = 1
 Copy the config file into place after editing it.
  # cp [install_location]/etc/pyuverse.conf /etc
  PYTHONPATH=[install_location]/bin/
