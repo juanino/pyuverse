@@ -64,14 +64,11 @@ while True:
     print transmit
     print receive
     
-    shellcmd = "rrdtool update " + rrdFile + " N:" + receive + ":" + transmit
+    updatestring = "N:" + str(receive) + ":" + str(transmit)
+    print "Going to update with " + updatestring
+    returncode = rrdtool.update(rrdFile,updatestring)
+    print returncode
 
-    return_code = call(shellcmd, shell=True)
-    if return_code:
-        print "return code is"  
-        print return_code
-    else:
-        print "Good update. ----------->" + shellcmd
     make_mbits_graph()
     make_mbits_graph_1hr()
     mk_mbits_graph_1hr_upload()
