@@ -2,7 +2,7 @@
 import sys
 import rrdtool
 import ConfigParser
-
+import pprint
 
 # read the config file
 # default location is /etc/pyuverse
@@ -28,7 +28,13 @@ ret = rrdtool.graph("x.png", "--start", "-15m", "--vertical-label=Bytes/s",
  "DEF:outoctets=" + rrdFile + ":output:AVERAGE",
  "CDEF:inbits=inoctets,8,*",
  "CDEF:outbits=outoctets,8,*",
- "PRINT:inbits:AVERAGE:Avg In traffic\: %6.2lf %Sbps",
- "PRINT:inbits:MAX: %6.2lf %Sbps",)
+ "PRINT:inbits:AVERAGE:%6.2lf %Sbps",
+ "PRINT:outbits:AVERAGE:%6.2lf %Sbps",)
 
-print ret
+#pp = pprint.PrettyPrinter(indent=4)
+#pp.pprint(ret)
+
+downstream = ret[2][0]
+upstream = ret[2][1]
+print "Downstream -> " + downstream
+print "Upstream -> " + upstream
