@@ -36,5 +36,25 @@ ret = rrdtool.graph("x.png", "--start", "-15m", "--vertical-label=Bytes/s",
 
 downstream = ret[2][0]
 upstream = ret[2][1]
-print "Downstream -> " + downstream
-print "Upstream -> " + upstream
+print "Downstream:" + downstream
+print "Upstream:" + upstream
+downstream = downstream.split(None, 1)
+upstream = upstream.split(None, 1)
+
+downstream = downstream[0]
+upstream = upstream[0]
+
+print "Printing json to stats.json"
+f = open('stats.json', 'w')
+json =  '''
+{
+ "version":"1.0.0",
+ "title":"inid stats",
+ "datastreams" : [
+    {"id":"transmit", "current_value":"''' + upstream + '''"},
+    {"id":"receive", "current_value":"''' + downstream + '''"}
+  ]
+}
+'''
+
+f.write(json)
