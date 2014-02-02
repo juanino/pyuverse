@@ -14,6 +14,9 @@ Uverse equipment tested on:
  2wire i3812V
  Hardware Version 000705-004
  Software Version 6.3.7.37-enh.tm
+
+ Motorolla NVG589
+ Software Version 9.1.0h4d38
 Distributions tested for collection:
  Debian 6.0.4
 See the install section for different devices
